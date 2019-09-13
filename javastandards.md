@@ -16,4 +16,15 @@ Wildcard imports are not disallowed, but are strongly discouraged.  Exceptions a
 
 ### 4 Formatting
 
-####
+#### 4.4. Column Limit 120
+
+Lines have a column limit of 120.  The rest of the rule follows the google standard.
+
+#### 4.5.2 Indent continuation lines at least +4 spaces
+
+In addition to the google standard, it is highly recommended that continuations of function parameter lists be wrapped after an open-paren `(`, and indented to the level of the paren with each parameter on its own line.
+
+#### 4.6.3 Horizontal alignment: forbidden
+
+Do not horizontally align variable names in sequential declarations.
+
