@@ -18,7 +18,9 @@ The purpose of documenting code is to make it easy to reuse.  *Incorrect* docume
 
 Documentation is not, as a rule, self-maintaining.  Updating documentation takes time and effort.  The more documentation a project has, the more time and effort must be spent keeping that documentation consistent with changes to the code.
 
-*Therefore*, the fundamental rule of documentation is to *never write more documentation than can be reasonably maintained.*  Violating this rule will not only waste time, but actively hurt your project.  Match the scope of your documentation to the scope of your project - smaller projects naturally require less documentation than larger projects.  *Always* consider how much effort will need to be made to keep a piece of documentation up-to-date before writing that documentation in the first place.
+*Therefore*, the fundamental rule of documentation is to *never write more documentation than can be reasonably maintained.*
+
+Violating this rule will not only waste time, but actively hurt your project.  Match the scope of your documentation to the scope of your project - smaller projects naturally require less documentation than larger projects.  *Always* consider how much effort will need to be made to keep a piece of documentation up-to-date before writing that documentation in the first place.
 
 ## Documentation as Layers
 
