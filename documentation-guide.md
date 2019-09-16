@@ -12,6 +12,14 @@ We also need to concern ourselves with *why* we document code in the first place
 
 *Therefore*, the fundamental purpose of documenting code is *to make it easier to reuse the code than it is to rewrite it from scratch.*
 
+## The Fundamental Rule of Documentation
+
+The purpose of documenting code is to make it easy to reuse.  *Incorrect* documentation makes code *harder* to reuse.  Incorrect documentation is *worse* than no documentation.
+
+Documentation is not, as a rule, self-maintaining.  Updating documentation takes time and effort.  The more documentation a project has, the more time and effort must be spent keeping that documentation consistent with changes to the code.
+
+*Therefore*, the fundamental rule of documentation is to *never write more documentation than can be reasonably maintained.*  Violating this rule will not only waste time, but actively hurt your project.  Match the scope of your documentation to the scope of your project - smaller projects naturally require less documentation than larger projects.  *Always* consider how much effort will need to be made to keep a piece of documentation up-to-date before writing that documentation in the first place.
+
 ## Documentation as Layers
 
 Good code documentation is pervasive and multileveled.  Often, a software engineer joining a new project will ask "where is the documentation?"  On a robustly-documented project, the answer to this question is: "everywhere."
@@ -53,3 +61,5 @@ So, "where is the documentation?"  It should be woven throughout.  The structure
 3. **Source Documentation**:  This includes comments, meaningful naming conventions, and best-practices for code design and readability.  This ensures that advanced users are able investigate, debug, and/or modify the tool when necessary.
 
 It is important to note that this "layering" is not perfect: these layers overlap, and depend on each other.  Usage documentation should refer extensively to API documentation.  API documentation is often source-generated, and so overlaps with best practices for code commenting.  Nevertheless, this provides us with a baseline framework with which we can situate our best-practices.
+
+The standards for each layer will be covered below in reverse-order, as that is the order in which the documentation is naturally developed during the course of code development.
