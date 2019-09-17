@@ -105,6 +105,12 @@ This is often the case with "proof-of-concept" code, which grows rapidly and hap
 
 *Therefore*, ensure that your code separates into pieces, *and* that each piece has a clear functionality that can be understood without simultaneously understanding the rest of the code in full detail.  In object-oriented programming, this is often best-accomplished by making wise choices as to one's class structure - but the concept is applicable in all contexts.
 
+#### Avoid Globals (AKA Pass Information Locally)
+
+Global variables are almost always a bad idea.  Since a global variable can be modified or read from anywhere in the code, they directly contradict the notion of factoring the code into chunks that can be understood in isolation.  Code that makes heavy use of globals tends to be extremely difficult to read, and even harder to modify/debug.
+
+There are, of course, some cases where globals are unavoidable.  There are others when they are defensible design choices (e.g. a service that everything does actually need to interface with, and that there will never be more than one of).  But if you find yourself using a global variable to pass state from one part of the program to another, you have almost certainly done something wrong.
+
 #### Do Not Repeat Code Unnecessarily (AKA: Abstraction Is Good)
 
 Figuring out what a piece of code does is hard enough.  Having to figure out what the same piece of code does multiple times over is infuriating.  Repetition is not just an inefficiency in *writing* code, but in *reading* it, as well.
@@ -124,3 +130,22 @@ This can occur for a number of reasons.  Top-heavy, "waterfall" development prac
 Compounding this, developers familiar with a project find themselves in a uniquely poor situation to judge the onset of overabstraction.  Familiarity with the code "collapses" the layers as they compound - those close to the code build mental shortcuts to "cut through the cruft."  Even after the intent of the code has long-since become entirely obscure to the outside observer, the original developer retains privileged knowledge of its original purpose and design - at least, until they spend a sufficient amount of time away from the project, at which point they are often rendered as clueless as anyone else.
 
 *Therefore*, stay constantly vigilant against "abstraction-creep."  Do not add more abstraction to a project to facilitate a new feature until/unless it is *certain* that the new feature is needed.  Beware scope-creep.  Constantly solicit feedback on the clarity of your design structure from those *without* intimate familiarity with the project.
+
+#### Avoid Deeply-Nested Control Statements (AKA: The Actual Reason for Column Limits)
+
+```java
+if (cond1) {
+  if (cond2) {
+    for (i=0; i<10; i++) {
+      while (cond3) {
+        if (cond4) {
+          // You've made a terrible mistake
+```
+
+Hopefully it is clear by now that the key to readable code is *not requiring the reader to think about too much at once.*
+
+One of the easiest ways to violate this principle is by haphazardly nesting control statements.  This is exceedingly easy to do while writing code, as the programmer (who knows what they intend to do) can build such nests from the "inside-out," limiting the noticeable complexity at each stage of growth.  Unfortunately, it is also exceedingly difficult to comprehend later, even by the programmer who originally wrote the code, as one is forced to read the resulting mess from  the "outside-in," keeping track of all of the previous levels at each stage.  As the number of paths the programmer has to keep track of grows roughly exponentially with the depth of nesting, this rapidly becomes utterly intractable.
+
+Additionally, the sheer visual noise of having many layers of indentation itself poses a barrier to readability, making it easy to lose track of identation levels and, eventually, requiring an unreasonable number of line continuations as the code butts up against the column limit.  This is, actually, a *feature* of a conservative column limit in many coding standards; rather than placing a limit on the number of nested control statements, the strict column limit simply makes overly-deep nesting pragmatically unusable as the programmer runs out of space.
+
+*Therefore*, do not deeply nest control statements.  Good strategies for avoiding this include liberal use of early return/continue, collapsing nested if statements into single-level if statements with compound conditions, and, if all else fails, encapsulating some of the complexity in a subroutine.  If the problem seems intractable even with these tools, this is likely a symptom of a fundamental problem with your code design.
