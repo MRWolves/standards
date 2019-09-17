@@ -52,9 +52,11 @@ And then, finally, implementation details:
 * "How do the parts of this tool actually work?"
 * "How might I modify parts of this tool to do things that I want, but that it does not yet support?"
 
-All of these levels are important, and all of them require documentation.  But the *type* of documentation required by each is not the same; high-level architectural decisions can be explained by technical prose, but low-level implementation details will almost always require either pseudocode or actual source.  Just as our actual understanding of a system "cleaves" naturally into layers based on levels-of-abstraction, so too does the ideal structure of project documentation.
+All of these levels are important, and all of them require documentation.  But the *type* of documentation required by each is not the same; high-level architectural decisions can be explained by technical prose, but low-level implementation details will almost always require either pseudocode or actual source.
 
-So, "where is the documentation?"  It should be woven throughout.  The structure of the documentation should match the structure of our understanding of the system.
+Additionally, these levels distinguish themselves by their differential *rates of change*.  Low-level implementations tend to be volatile, while high-level problem-space constraints tend to move relatively slowly.  This naturally leads to [shearing layers](http://www.laputan.org/mud/mud.html#ShearingLayers), as things which change at similar rates end up factored together in code - and, likewise, in documentation.
+
+Just as our actual understanding of a system "cleaves" naturally into layers based on levels-of-abstraction, so too does the ideal structure of project documentation.  So, "where is the documentation?"  It should be woven throughout.  The structure of the documentation should match the structure of our understanding of the system.
 
 *Therefore*, documentation is implemented in a layered fashion.  In particular, code documentation for our software projects should have three layers:
 
@@ -65,3 +67,38 @@ So, "where is the documentation?"  It should be woven throughout.  The structure
 It is important to note that this "layering" is not perfect: these layers overlap, and depend on each other.  Usage documentation should refer extensively to API documentation.  API documentation is often source-generated, and so overlaps with best practices for code commenting.  Nevertheless, this provides us with a baseline framework with which we can situate our best-practices.
 
 The standards for each layer will be covered below in reverse-order, as that is the order in which the documentation is naturally developed during the course of code development.
+
+## Source Documentation: Style, Structure, Naming, and Comments
+
+Source documentation is the most basic and fundamental form of code documentation.  *All* projects have source documentation: at base, the code itself can be always considered a piece of documentation.
+
+That said, not all source documentation is created equal.  Some code elegantly explains itself; other code is [deliberately impenetrable](https://www.ioccc.org/).  Code readability (as with many things in code) follow the [principle of least surprise](https://en.wikipedia.org/wiki/Principle_of_least_astonishment) - familiar patterns require less thought, and thus are easier to interpret.
+
+This guide will set standards for the following four aspects of source documentation: **Code Style**, **Code Structure**, **Naming**, and **Comments**.
+
+### Code Style
+
+A uniform code style is *crucial* to code readability.  Consistency in style within a project is *absolutely mandatory,* and consistency across projects is highly desirable.
+
+The foundation of a uniform code style is a coherent set of standards.  Since cross-project consistency is desirable, it is almost always a good idea to *begin with an existing set of standards*, rather than to write one's own.  Accordingly, all MRAS coding styleguides are based on existing standards.  Modifications are permitted, but should be both justified and, if possible, minor.
+
+The following is a list of MRAS Application Team coding styleguides.  NOTE: This list is still under-construction.
+
+* Java: https://github.com/Oblarg/MREStuff/blob/master/javastandards.md
+
+### Code Structure
+
+Adhering to style standards normalizes syntactic details, but it generally does nothing to normalize the general organization and design of the code.  These are just as important, if not moreso, to rendering one's code readable by others.  While it is impossible to give a fully-general set of standards for how one should structure their code - this is driven by details of the problem space in which the project is situated - there are nonetheless some general principles which it is a good idea to follow.
+
+NOTE:  To quote George Orwell: "Break any of these rules sooner than say anything outright barbarous."  None of these are absolutes.
+
+#### Separation of Responsibilities (AKA: Each Piece of Code Should Have a Job)
+
+When attempting to understand a piece of code, one of the most natural and effective strategies is to attempt to break the code into pieces and figure out what each piece is responsible for.
+
+Unfortunately, it is very easy to write code for which this strategy is doomed to failure, because either:
+
+a) The code does not separate into smaller "pieces" (functions, classes, namespaces, whathaveyou) in the first place, or
+b) The pieces the code separates into do not reflect any sort of sensible division of the code's functionality
+
+This is often the case with "proof-of-concept" code, which grows rapidly and hapazardly as the programmer becomes familiar with the problem-space and new requirements are encountered.  Often, no thought at all is put into *where* new functionality should be added; this is determined by immediate convenience, or pure happenstance.
