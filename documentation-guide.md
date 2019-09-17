@@ -94,7 +94,7 @@ NOTE:  To quote George Orwell: "Break any of these rules sooner than say anythin
 
 #### Separation of Responsibilities (AKA: Each Piece of Code Should Have a Job)
 
-When attempting to understand a piece of code, one of the most natural and effective strategies is to attempt to break the code into pieces and figure out what each piece is responsible for.
+When attempting to understand a piece of code, one of the most natural and effective strategies is to attempt to break the code into pieces and figure out what each piece is responsible for.  Humans have limited working memory; it is almost impossible to understand the entirety of a nontrivial software project at the same time.
 
 Unfortunately, it is very easy to write code for which this strategy is doomed to failure, because either:
 
@@ -102,3 +102,25 @@ a) The code does not separate into smaller "pieces" (functions, classes, namespa
 b) The pieces the code separates into do not reflect any sort of sensible division of the code's functionality
 
 This is often the case with "proof-of-concept" code, which grows rapidly and hapazardly as the programmer becomes familiar with the problem-space and new requirements are encountered.  Often, no thought at all is put into *where* new functionality should be added; this is determined by immediate convenience, or pure happenstance.
+
+*Therefore*, ensure that your code separates into pieces, *and* that each piece has a clear functionality that can be understood without simultaneously understanding the rest of the code in full detail.  In object-oriented programming, this is often best-accomplished by making wise choices as to one's class structure - but the concept is applicable in all contexts.
+
+#### Do Not Repeat Code Unnecessarily (AKA: Abstraction Is Good)
+
+Figuring out what a piece of code does is hard enough.  Having to figure out what the same piece of code does multiple times over is infuriating.  Repetition is not just an inefficiency in *writing* code, but in *reading* it, as well.
+
+Abstracting repeated code into a subroutine or class serves not only to remind the reader that they already know what it does, but it also allows them to view the code as a "black box" with a set of defined inputs and outputs.  As mentioned, the most effective way to understand complex systems is by breaking them down into small chunks that can be understood in relative isolation; repeated code almost always represents such a chunk, and so the structure of your program should reflect that.
+
+*Therefore*, when you find yourself repeating a chunk of code, strongly consider creating a reusable abstraction.  Copy-pasting is a sure sign that abstraction is a good idea.
+
+#### Do Not Overabstract (AKA: Abstraction Is Bad)
+
+Abstraction is great, right up until it isn't so great.  Perhaps the only thing worse than having to mentally replace a lengthy, repeated block of code with an imagined summary due to the lack of a sensible abstraction, is [having to "unwrap" a summary of a summary of a summary of a summary only to find the equivalent of four lines of code at the bottom](https://pranksanonymouspullzone-s07ehlhq.netdna-ssl.com/wp-content/uploads/2019/02/SquareBox.jpg).
+
+(For an intentionally egregious example of this, see [Enterprise FizzBuzz](https://github.com/EnterpriseQualityCoding/FizzBuzzEnterpriseEdition))
+
+This can occur for a number of reasons.  Top-heavy, "waterfall" development practices often result in overabstracted code because the major design decisions are made before it becomes clear where flexibility is needed and where it is not.  Even in less-structured environments, the temptation to allow for future expansion before the need for such has demonstrated itself is pervasive.  "Scope creep" can eventually eat even the simplest of projects, as the incremental appeal of "just one more feature" is almost always more immediately salient than the eventual cost of repeatedly accumulating additional complexity.
+
+Compounding this, developers familiar with a project find themselves in a uniquely poor situation to judge the onset of overabstraction.  Familiarity with the code "collapses" the layers as they compound - those close to the code build mental shortcuts to "cut through the cruft."  Even after the intent of the code has long-since become entirely obscure to the outside observer, the original developer retains privileged knowledge of its original purpose and design - at least, until they spend a sufficient amount of time away from the project, at which point they are often rendered as clueless as anyone else.
+
+*Therefore*, stay constantly vigilant against "abstraction-creep."  Do not add more abstraction to a project to facilitate a new feature until/unless it is *certain* that the new feature is needed.  Beware scope-creep.  Constantly solicit feedback on the clarity of your design structure from those *without* intimate familiarity with the project.
