@@ -157,3 +157,31 @@ Your code itself may be extremely elegant and self-explanatory, but all of this 
 This is an *infuriatingly difficult* process.  Even if the code in each file is easy to read, the search time alone as one attempts to "back-trace" the control flow without any guidance can render a project uninterpretable.  And if the code *isn't* easy to read, well, there's no hope at all.  In the worst case, it can be impossible to even find the file responsible for primary program flow (e.g. one containing a `main()` function), leaving the programmer grasping at an assortment of parts with no idea what is determining how they are put together.
 
 *Therefore*, always ensure that your project directory is sensibly-structured.  Define a directory structure that matches your project structure, and document it in a README included in the root directory.  *Always* consider how hard it will be for someone unfamiliar with the project to find the important files that control program flow, so that unfamiliar readers can work from the "inside-out" rather than from the "outside-in."
+
+#### Use Standard Tools When Possible (AKA: No One Uses a DVORAK Keyboard)
+
+The Principle of Least Surprise applies almost everywhere, including one's choice of which external tools to use in one's project.
+
+Any time you use a nonstandard tool, anyone reading your code likely must also learn that tool.  If you use a tool they're already likely to know, that's one less task for them to handle.
+
+The standard tools are not always the "best" tools, when judged purely on their merits with respect to the technical problem-space of the project.  However, as we've established, if no one is willing to re-use your code in the first place because they can't be bothered to figure out how it works, any marginal technical benefit from using a more-obscure tool *won't matter*.  Technical decisions have to be made in a broader context.
+
+*Therefore*, always use the standard tool when the standard tool will work acceptably, even if a more-obscure tool might work slightly better.  Always weigh the technical benefit of an alternative tool against the readability cost of diverging from the standard.  Never use an obscure tool unless it is either extremely simple to learn or absolutely no standard tool will do.
+
+### Naming
+
+One of the worst features of programming education, on the whole, is the canonical use of meaningless single-character variable names in pedagogical examples:
+
+```java
+int i = 0;
+char c = '%';
+String s = "why is this practice so common";
+```
+
+Variable names are often treated as arbitrary placeholders whose meaning is granted by the context of the surrounding code.  It's not hard to understand the origin of this mindset: from the point of view of the compiler (and thus of the machine executing the code), this is entirely accurate.  Computer scientists are often all too happy to willfully perpetuate this mindset, with "coder culture" glorifying minimalistic code and machinelike images of the "ideal" programmer.  If the computer does not care whether your integer is named `i`, `intVal`, or `rumplestiltskin`, why should you?
+
+Of course, the obvious reason is that humans are *not* computers.  It is a great irony that while we humans *understand* the code we write, the computers responsible for running it do *not.*  Computers are dumb - computer code is precisely the means through which an intelligent actor (i.e. a human) instructs a fundamentally dumb machine to perform complicated tasks.
+
+You don't read code like a computer reads code, and so you shouldn't write code to be read that way, either.  The computer can "read" it equally well either-way - but you cannot, and the computer is not really "reading" it to begin with!
+
+As variable names are one of the least-constrained aspects of a piece of code, they are naturally also one of the most important vehicles for facilitating understanding of the code.  A variable name is, itself, a crucial piece of documentation.  Choose it wisely!
