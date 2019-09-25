@@ -185,3 +185,107 @@ Of course, the obvious reason is that humans are *not* computers.  It is a great
 You don't read code like a computer reads code, and so you shouldn't write code to be read that way, either.  The computer can "read" it equally well either-way - but you cannot, and the computer is not really "reading" it to begin with!
 
 As variable names are one of the least-constrained aspects of a piece of code, they are naturally also one of the most important vehicles for facilitating understanding of the code.  A variable name is, itself, a crucial piece of documentation.  Choose it wisely!
+
+#### Name Variables After Their Jobs (AKA: `i` Does Not Tell You Anything Useful)
+
+A programmer usually cares more about what a variable *does* than what a variable *is.*  Seeing that a variable is named `i` tells the reader that the variable is probably an integer; but that's one of the least-useful pieces of information we could encode in the variable name, as the declaration of the variable should make that obvious (in dynamically-typed languages, this is less the case, but that's a real shortcoming of dynamically-typed languages).
+
+What a variable ought to be named is what a programmer is most likely to need reminding of when they see the variable.  In almost all cases, this is "the variable's role in the piece of code being read."
+
+*Therefore*, a variable's name should be a description of its *job*.  If an integer is being used as a counter, name it `counter`.
+
+#### Disambiguate Names by Increasing Specificity (AKA: Do Not Name Your Variables `Counter1` and `Counter2`)
+
+In keeping with the above advice, you'll often run into a scenario where multiple variables have similar jobs.  While writing code, it is *extremely tempting* to disambiguate the names of such variables by simply appending an additional token of some sort, without putting much thought into the token itself.  The immediate concern to the code's author is to have two different names, not necessarily to make sure that the difference in the names is itself a conveyor of meaningful information.
+
+But to the reader of the code, such a disambiguation is useless; it is merely a sign that one must now tediously inspect the source to attempt to find the *actual* difference in the roles of the two variables.  This takes time and effort - the minimization of which is the whole point of documentation.
+
+*Therefore*, when disambiguating the names of two similar variables, *describe their jobs in greater detail*.  Instead of `counter1` and `counter2`, disambiguate the variables with *what they are counting* (e.g. `InstanceCounter`).
+
+#### Disambiguate Important Names Preemptively (AKA: `Parameterizer` Probably Describes Multiple Things)
+
+Applying the above advice while building a piece of software can be made much more difficult by the fact that, by default, we humans do not see the future.
+
+A function, class, or variable may have a perfectly acceptable name, right up until the addition of another piece of code renders it ambiguous, at which point the programmer is forced to (potentiously arduously) go back and change the original (or, often, to give up and slap a ``2`` on the end of the name of whatever new thing is causing the problem - please do not do this).
+
+It is important to note that sometimes, changing things as problems emerge is the *right thing to do*.  Preemptive optimization can ruin projects.  *However*, sometimes it can be predicted when such a change would be particularly painful - for example, the name may be part of a public API (rendering any such change breaking).  In these cases, it can help to take precautions.
+
+*Therefore*, when a name is likely going to be difficult to change in the future, be sure to choose a sufficiently-specific name to begin with.
+
+#### Make Compromises When Things Become Unweildy (AKA: No One Wants to Read `AppletWidgetInstanceParameterizerFactoryFactory`)
+
+Descriptive naming does have limits.  Occasionally, in pursuit of providing everything with unique and semantically-meaningful names, monstrosities are created.  This is a common point of mockery for Java APIs (particularly [Spring](https://spring.io/>), which are liable to end up with class names so long and obtuse that they are [indistinguishable from machine-generated jibberish](http://java.metagno.me/).
+
+*Therefore*, never be so specific with your naming that the sheer length of your names renders them unhelpful.
+
+### Comments
+
+Finally, let's talk about comments.  Comments are widely (and correctly) regarded as a crucial element of code documentation.  In fact, in a lot of discussion, they're the *only* element discussed.  This is somewhat problematic - "comment your code" is very vague advice, in the abstract.  Comment it with *what?*
+
+Effective code commenting *must* be done in combination with the other documentation practices discussed in this document.  An awful lot of important information is *not* effectively conveyed through comments, and attempting to "make up" for shortcomings elsewhere in code readability through comments is usually a doomed endeavor.
+
+#### Comments Are Not Translations (AKA: Line-by-Line Explanations Are Useless)
+
+The following is an example of (regrettably) common commenting practice:
+
+```java
+public int getNonNullEntries() {
+  // Initialize counter
+  int i = 0;
+  // Loop over entries
+  for (Entry e : entries) {
+    // Check if entry is nonnull
+    if (e != null) {
+      // Increment counter if entry is nonnull
+      i++;
+    }
+  }
+  // Return counter value
+  return i;
+}
+```
+
+Not a single comment in the above example is particularly useful to the reader.  The comments have simply translated the code, line-by-line, into pseudocode.  A reader fluent in the language obtains no useful information from any of the comments; they are redundant, and waste space.
+
+To the extent that these sort of comments provide any help at all, it is merely to "cover up" documentation mistakes in the source itself - for exmaple, we would not need a comment to tell us that `i` is a counter if it had simply been named `counter` (or, better, `entryCount` or `nonNullCount`).
+
+Consider instead:
+
+```java
+int getNonNullEntries() {
+
+  int entryCount = 0;
+
+  for (Entry entry : entries) {
+    if (entry != null) {
+      entryCount++
+    }
+  }
+  
+  return entryCount;
+}
+```
+
+This is strictly more-readable, despite having no comments at all!  In fact, a method this simple should likely *not* have any comments.
+
+*Therefore*, do not generally use comments as natural-language translations of individual lines of code.
+
+Of course, exceptions can be made for particularly obscure lines, which even a competent reader might have trouble otherwise parsing (though, if you find yourself using such lines often, it is probably bad coding practice on your part).
+
+#### Good Comments Are Summaries (AKA: [The Map Is Smaller than the Territory](https://kwarc.info/teaching/TDM/Borges.pdf))
+
+The point of documentation is to make code easier to understand.  Comments, as they are natural-language descriptions of the code, must therefore be easier to understand than the code itself.  In most cases, this means that a comment should *summarize* the content being commented.
+
+One of the reasons the line-by-line commenting described above does not work is that it is very hard to summarize a single line of code (provided that line is of reasonable length and complexity).  In order to summarize something, details need to be omitted.  To provide a reasonable choice as to which details can be left out, comments need to summarize a sufficiently-large block of code.
+
+Thus, the choice of how large a "chunk" of code to summarize is important, and is one of the major determining factors as to whether one's comment is helpful or not.  This ties directly into [code structure](#code-structure) - well-structured code offers clear points at which summaries are appropriate.
+
+*Therefore*, use comments to describe a piece of code large enough to be meaningfully summarized.  Try to guess at what points the reader will want high-level descriptions of the code.  Don't comment a piece of code small enough to be easily understood by itself.
+
+#### Comments Can Be Visual Aids (AKA: Delimeters Are Good)
+
+One of the most important parts of keeping a large source file readable is ensuring that it cleaves readily into smaller "chunks."  If it does not do this, navigating the "wall of text" can be nearly impossible.
+
+Often, the structure of the code itself serves to do this (the code may factor cleanly into smaller objects, subroutines, etc).  Sometimes, however, this is not the case.  In these cases, comments are your friend - simply providing a visual indication of the on-page extent of a conceptual "block" of code is a crucially-important function.
+
+*Therefore*, when code does not cleave itself naturally into smaller chunks, use comments to provide visual guidance as to the "pieces" of the code.
