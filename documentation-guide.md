@@ -282,6 +282,8 @@ Thus, the choice of how large a "chunk" of code to summarize is important, and i
 
 *Therefore*, use comments to describe a piece of code large enough to be meaningfully summarized.  Try to guess at what points the reader will want high-level descriptions of the code.  Don't comment a piece of code small enough to be easily understood by itself.
 
+Note that many high-level summaries should actually be placed in [source-generated documentation](#source-generated-documentation) rather than in ordinary comments.
+
 #### Comments Can Be Visual Aids (AKA: Delimeters Are Good)
 
 One of the most important parts of keeping a large source file readable is ensuring that it cleaves readily into smaller "chunks."  If it does not do this, navigating the "wall of text" can be nearly impossible.
@@ -289,3 +291,83 @@ One of the most important parts of keeping a large source file readable is ensur
 Often, the structure of the code itself serves to do this (the code may factor cleanly into smaller objects, subroutines, etc).  Sometimes, however, this is not the case.  In these cases, comments are your friend - simply providing a visual indication of the on-page extent of a conceptual "block" of code is a crucially-important function.
 
 *Therefore*, when code does not cleave itself naturally into smaller chunks, use comments to provide visual guidance as to the "pieces" of the code.
+
+## API Documentation
+
+API Documentation provides the intermediate stage between source documentation and usage documentation - it consists of a collection of summaries of tool features adhering to a standard format, such as can be used as a reference by a programmer working with the tool.
+
+API Documentation should generally be [source-generated](#source-generated-documentation) - i.e., auto-generated from comments located in the source.  This allows the API documentation to serve "double-duty" as in-code documentation, removing the need for duplication of summaries between comments and API docs.
+
+### Source-Generated Documentation
+
+Good commenting practice, as mentioned earlier, involves summarizing code for the reader.  Often, code naturally presents us with convenient summarizeable "chunks" - in object-oriented programming, especially, methods and classes are extremely natural points for summarization.
+
+Here, there exists an extremely fortuitious overlap in purposes - summarization of classes and methods is not only extremely beneficial for one reading the source, but those summaries can, when gathered together and presented in a structured manner, serve to summarize all the important public-facing points of the API.  Accordingly, a number of tools exist to generate these API docs from specially-formatted comments in the source.
+
+Using these tools not only removes the need to write separate API docs, but also (and more importantly) removes the need to *maintain* those docs.
+
+All projects should use `Javadoc <https://en.wikipedia.org/wiki/Javadoc>`__-style source-generated API docs.  Almost all languages now support docs of this sort (e.g. `doxygen <http://www.doxygen.nl/>` for C++/C#), and the consistency in style offered by the use of uniform tools is a tremendous asset.  For brevity, term "Javadoc" will be used to refer to all of these for the remainder of this document.
+
+#### Don't Restate the Function Name (AKA: Everyone Already Knows What a Getter Does)
+
+```java
+/**
+ * Gets the date.
+ * 
+ * @ return The date.
+ */
+public Date getDate() {
+  return date;
+}
+```
+
+The first line of text in the javadoc above serves absolutely no purpose other than to add additional lines to the source file.
+
+*Therefore*, omit descriptions that merely duplicate information:
+
+```java
+/**
+ * @ return The date.
+ */
+public Date getDate() {
+  return date;
+}
+```
+
+#### Be Detailed (AKA: Why didn't It Tell Me It'd Do That?)
+
+It's important to remember that the person reading your documentation *does not know what you know* (even if that person is you at some point in the future!).  The purpose of API documentation is to *summarize the important information about a piece of code*.  This doesn't just mean describing what the thing generally does - the name of the thing can and should do that already.  This means noting anything that might be surprising/unobvious about the functionality.
+
+*Therefore*, don't do this:
+
+```java
+/**
+ * @return The current heading.
+ */
+public double getHeading() {
+  return Math.IEEERemainder(heading, 360);
+}
+```
+
+Instead, do this:
+
+```java
+/**
+ * @return The current heading in degrees, from -180 to 180 (multiple turns will wrap).
+ */
+public double getHeading() {
+  return Math.IEEERemainder(heading, 360);
+}
+```
+
+#### Use full sentences (AKA: This Isn't Really That Important, We Just Need a Style Standard)
+
+Nothing's uglier than an API doc with inconsistent style.  While there are multiple standards to choose from, and all of them are more-or-less equally fine, the easiest one to remember by far is, simply, "all text in the javadoc should be in complete sentences."
+
+*Therefore*, all text in the javadoc should be in complete sentences.
+
+#### Remember to Link to Related Documentation (AKA: Don't Make Me Dig Through the Documentation)
+
+When a javadoc summary mentions another class or method and *doesn't* link to that class or method, the reader is forced to waste time looking for it.  Almost all javadoc-style API docs support linking to other generated docs.
+
+*Therefore*, always link to the documentation for mentioned code.
