@@ -1,4 +1,39 @@
-# MRAS Application Team Code Documentation Guide
+- [Documentation: What and Why?](#documentation-what-and-why)
+- [The Fundamental Rule of Documentation](#the-fundamental-rule-of-documentation)
+- [Documentation as Layers](#documentation-as-layers)
+- [Source Documentation: Style, Structure, Naming, and Comments](#source-documentation-style-structure-naming-and-comments)
+  - [Code Style](#code-style)
+  - [Code Structure](#code-structure)
+    - [Separation of Responsibilities (AKA: Each Piece of Code Should Have a Job)](#separation-of-responsibilities-aka-each-piece-of-code-should-have-a-job)
+    - [Avoid Globals (AKA Pass Information Locally)](#avoid-globals-aka-pass-information-locally)
+    - [Do Not Repeat Code Unnecessarily (AKA: Abstraction Is Good)](#do-not-repeat-code-unnecessarily-aka-abstraction-is-good)
+    - [Do Not Overabstract (AKA: Abstraction Is Bad)](#do-not-overabstract-aka-abstraction-is-bad)
+    - [Avoid Deeply-Nested Control Statements (AKA: The Actual Reason for Column Limits)](#avoid-deeply-nested-control-statements-aka-the-actual-reason-for-column-limits)
+    - [Keep Your File Structure Orderly (AKA: Where the Heck Is the `main` Function?)](#keep-your-file-structure-orderly-aka-where-the-heck-is-the-main-function)
+    - [Use Standard Tools When Possible (AKA: No One Uses a DVORAK Keyboard)](#use-standard-tools-when-possible-aka-no-one-uses-a-dvorak-keyboard)
+  - [Naming](#naming)
+    - [Name Variables After Their Jobs (AKA: `i` Does Not Tell You Anything Useful)](#name-variables-after-their-jobs-aka-i-does-not-tell-you-anything-useful)
+    - [Disambiguate Names by Increasing Specificity (AKA: Do Not Name Your Variables `Counter1` and `Counter2`)](#disambiguate-names-by-increasing-specificity-aka-do-not-name-your-variables-counter1-and-counter2)
+    - [Disambiguate Important Names Preemptively (AKA: `Parameterizer` Probably Describes Multiple Things)](#disambiguate-important-names-preemptively-aka-parameterizer-probably-describes-multiple-things)
+    - [Make Compromises When Things Become Unweildy (AKA: No One Wants to Read `AppletWidgetInstanceParameterizerFactoryFactory`)](#make-compromises-when-things-become-unweildy-aka-no-one-wants-to-read-appletwidgetinstanceparameterizerfactoryfactory)
+  - [Comments](#comments)
+    - [Comments Are Not Translations (AKA: Line-by-Line Explanations Are Useless)](#comments-are-not-translations-aka-line-by-line-explanations-are-useless)
+    - [Good Comments Are Summaries (AKA: The Map Is Smaller than the Territory)](#good-comments-are-summaries-aka-the-map-is-smaller-than-the-territory)
+    - [Comments Can Be Visual Aids (AKA: Delimeters Are Good)](#comments-can-be-visual-aids-aka-delimeters-are-good)
+- [API Documentation](#api-documentation)
+  - [Source-Generated Documentation](#source-generated-documentation)
+    - [Don't Restate the Function Name (AKA: Everyone Already Knows What a Getter Does)](#dont-restate-the-function-name-aka-everyone-already-knows-what-a-getter-does)
+    - [Be Detailed (AKA: Why didn't It Tell Me It'd Do That?)](#be-detailed-aka-why-didnt-it-tell-me-itd-do-that)
+    - [Use full sentences (AKA: This Isn't Really That Important, We Just Need a Style Standard)](#use-full-sentences-aka-this-isnt-really-that-important-we-just-need-a-style-standard)
+    - [Remember to Link to Related Documentation (AKA: Don't Make Me Dig Through the Documentation)](#remember-to-link-to-related-documentation-aka-dont-make-me-dig-through-the-documentation)
+    - [Always document params and return values (AKA: Inputs/Output Are Important)](#always-document-params-and-return-values-aka-inputsoutput-are-important)
+- [Usage Documentation](#usage-documentation)
+  - [Orient New Readers (AKA: Include a "Getting Started Page")](#orient-new-readers-aka-include-a-%22getting-started-page%22)
+  - [Do Not Write an Extended Tutorial (AKA: No One Is Going to Read Your Documentation End-to-End)](#do-not-write-an-extended-tutorial-aka-no-one-is-going-to-read-your-documentation-end-to-end)
+  - [Do Not Write Only (Or Even Mostly) Tutorials (AKA: Reference Material Is Important)](#do-not-write-only-or-even-mostly-tutorials-aka-reference-material-is-important)
+  - [Use Multilayer Organization (AKA: Factor Related Things Together)](#use-multilayer-organization-aka-factor-related-things-together)
+- [Seeing "Outside-In" vs. "Inside-Out" - The Pitfalls of Being The Developer](#seeing-%22outside-in%22-vs-%22inside-out%22---the-pitfalls-of-being-the-developer)
+- [A Closing Note: "Would I Hate These Developers?"](#a-closing-note-%22would-i-hate-these-developers%22)
 
 ## Documentation: What and Why?
 
@@ -371,3 +406,73 @@ Nothing's uglier than an API doc with inconsistent style.  While there are multi
 When a javadoc summary mentions another class or method and *doesn't* link to that class or method, the reader is forced to waste time looking for it.  Almost all javadoc-style API docs support linking to other generated docs.
 
 *Therefore*, always link to the documentation for mentioned code.
+
+#### Always document params and return values (AKA: Inputs/Output Are Important)
+
+Source-generated documentation systems basically always include features for individually documenting the parameters and return values of methods.  Most editors support auto-generation of the required tags (usually `@param` and `@return`).  If you *don't* set these up, the parameters will still have "descriptions" in the source-generated docs, but they will be empty.
+
+*Therefore*, always do this.
+
+## Usage Documentation
+
+The final "layer" of documentation to be written for a project is *usage documentation*.  This consists of large amounts of prose and supporting media (pictures, example code snippets, etc), and is intended to orient a new user as to what the project is, and how it is intended to be used.
+
+For MRWolf projects, usage documentation will be contained in [Sphinx](http://www.sphinx-doc.org/en/master/) projects.  This provides a standard format and look for our documentation, and also supports a large number of standard and community-written features that make writing and maintaining our documentation easier.
+
+The template for an MRWolf Sphinx Documentation Project can be found here: https://github.com/MRWolves/sphinx-template
+
+Usage documentation and standards for the above template can be found here: https://mrwolf-sphinx-playground.readthedocs.io
+
+Remember, again, that you should never write more documentation that you can feasibly maintain.  By nature, usage docs are the most involved and time-consuming type of documentation a project can have - small projects do not necessarily need usage docs, and should not have them if maintaining them would involve an unreasonable investment of effort.
+
+### Orient New Readers (AKA: Include a "Getting Started Page")
+
+One of the most common pitfalls of usage docs is that, as they are invariably written by those closely familiar with the code, little attention is paid to how easy they are to naviage by someone *not* familiar with the code.
+
+This issue has been mentioned before in this document, but it is by far most crucial at this level of documentation - usage docs are the "public face" of your project, and represent the point at which the "ideal reader" is *furthest* from the likely author.
+
+A common result of this is that many usage docs lack any sort of clear introduction or orientation for the new reader - after all, the author is already familiar with the structure of the project and knows where to look for the information they want.  This mistake is lethal - your documentation can have flawless content, but it is worthless if the user cannot *find what they need.*
+
+*Therefore*, always include a "Getting Started" page that directs the reader to the various parts of the usage documentation, and provides context for the project structure.
+
+### Do Not Write an Extended Tutorial (AKA: No One Is Going to Read Your Documentation End-to-End)
+
+It is often tempting to write usage docs as one long tutorial.  This is *always* a mistake.
+
+Tutorials are a good thing - when they're the right tool for the job.  They're effective at presenting concepts to a new reader in the order in which they're needed, removing the need for the reader to jump around the reference material trying to figure out which parts are supposed to plug into which other parts, and how.  The logical flow of the tutorial supplants the need to search for content - as long as the user is following the tutorial, they will (so long as the tutorial is well-written) encounter almost precisely the information they need, in the order they need it.
+
+By the same token, tutorials are impossible to navigate by any reader that is *not* following the flow of the tutorial.  Hence, tutorials tend to make *terrible* reference material; once you no longer need a step-by-step guide, the tutorial layout becomes a hindrance, not a help.
+
+Additionally, tutorials require strong assumptions about what precisely the user wants to do - it is nearly impossible to write a "branching tutorial" without it becoming an unmanageable mess.  If those assumptions are not correct, the reader will no longer encounter the correct information in the sequence of the tutorial, and will be frustrated.  Moreover, the longer the tutorial is, the stronger the assumptions about what the reader actually *wants to do* have to be.
+
+Thus, a sufficiently-lengthy tutorial is almost always going to "lose the reader" by its end - and, once the reader is lost, a tutorial becomes an uselessly-structured labyrinth of inscrutable ordering.
+
+*Therefore*, keep your tutorials short and limited in scope.  Arrange them logically with the rest of the documentation, with the goal of making them easily-searchable - do not attempt to write your documentation as a coherent end-to-end narrative.  No one will ever read it that way.  Allow for "sequence-breaks," and consistently link to other sections when they are referenced.
+
+### Do Not Write Only (Or Even Mostly) Tutorials (AKA: Reference Material Is Important)
+
+Tutorials are great introductory material, but they rapidly wear thin as the user gains more than a cursory familiarity with the project.  As mentioned above, navigating tutorials - when what you want is assorted information *in* those tutorials rather than a step-by-step buide - sucks.
+
+*Therefore*, remember to write reference material that describes the library features themselves, rather than just guides that demonstrate how to use them in simple cases.
+
+### Use Multilayer Organization (AKA: Factor Related Things Together)
+
+Just like in code, usage docs are much easier to navigate if conceptually-related pages are factored together.  If your docs are short, this can be done simply by ordering the pages in a reasonable manner - for more substantial projects, however, this likely will not suffice, and the best solution is often to use a nested structure (just like how this article has sections and subsections).
+
+*Therefore*, pay attention to your main TOC.  If it's overlong, condense sections of related pages into their own subsections.
+
+## Seeing "Outside-In" vs. "Inside-Out" - The Pitfalls of Being The Developer
+
+The three layers mentioned above - source documentation, API documentation, and usage documentation - were ordered as they were to match the order in which the *developer* usually encounters them.  A developer starts with the code, and works outwards towards usage documentation as the product becomes more mature.  This progression - from the "inside-out" - fundamentally shapes how the developer sees their code, and their documentation.
+
+In a way, this places the developer in a uniquely bad position to judge the quality of their own documentation - because this is precisely the opposite from the order new users will actually *experience* said documentation.  A fundamental disconnect therefore exists between those who author a project, and those who encounter it after-the-fact.
+
+Whenever possible, it's important for a developer to try to view their documentation from the "outside-in," as a new user would.  Start by reading the most-abstract, highest-level piece of documentation you have.  How much knowledge of the project would you need to make sense of it?  Is this level of knowledge consistent with the likely experience of the intended audience of the documentation?  This is a *difficult* exercise, but a necessary one.
+
+And, ultimately, even this really doesn't suffice.  You can never truly un-learn what you have learned about the project in the process of writing the thing.  The only way to bridge the gap is constant, honest feedback from those on the outside.  The definition of "outside," of course, can vary.  Not every project is intended to be picked up by complete strangers - judging the likely level of familiarity of your documentation's audience is important.  But you can *never* write good documentation if the only feedback comes from the people who *don't need the documentation in the first place.*
+
+## A Closing Note: "Would I Hate These Developers?"
+
+On a final note, always remember the question: "If I had to use this tool, would I hate the people who made it?"
+
+The point of documentation is to make your code survive.  If the answer to that question is "yes," your code will not survive.
