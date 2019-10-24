@@ -24,7 +24,7 @@
   - [Source-Generated Documentation](#source-generated-documentation)
     - [Don't Restate the Function Name (AKA: Everyone Already Knows What a Getter Does)](#dont-restate-the-function-name-aka-everyone-already-knows-what-a-getter-does)
     - [Be Detailed (AKA: Why Didn't It Tell Me It'd Do That?)](#be-detailed-aka-why-didnt-it-tell-me-itd-do-that)
-    - [Use full sentences (AKA: This Isn't Really That Important, We Just Need a Style Standard)](#use-full-sentences-aka-this-isnt-really-that-important-we-just-need-a-style-standard)
+    - [Capitalize and Use Periods (AKA: This Isn't Really That Important, We Just Need a Style Standard)](#capitalize-and-use-periods-aka-this-isnt-really-that-important-we-just-need-a-style-standard)
     - [Remember to Link to Related Documentation (AKA: Don't Make Me Dig Through the Documentation)](#remember-to-link-to-related-documentation-aka-dont-make-me-dig-through-the-documentation)
     - [Always document params and return values (AKA: Inputs/Output Are Important)](#always-document-params-and-return-values-aka-inputsoutput-are-important)
 - [Usage Documentation](#usage-documentation)
@@ -395,11 +395,11 @@ public double getHeading() {
 }
 ```
 
-#### Use full sentences (AKA: This Isn't Really That Important, We Just Need a Style Standard)
+#### Capitalize and Use Periods (AKA: This Isn't Really That Important, We Just Need a Style Standard)
 
-Nothing's uglier than an API doc with inconsistent style.  While there are multiple standards to choose from, and all of them are more-or-less equally fine, the easiest one to remember by far is, simply, "all text in the javadoc should be in complete sentences."
+Nothing's uglier than an API doc with inconsistent style.  While there are multiple standards to choose from, and all of them are more-or-less equally fine, the easiest one to remember by far is, simply, "all text in the javadoc should be be formatted as complete sentences."
 
-*Therefore*, all text in the javadoc should be in complete sentences.
+*Therefore*, all text in the javadoc should be formatted as complete sentences (i.e. be capitalized and use periods).  This can seem a bit odd for param and return value descriptions, but it's simple and easy to remember.
 
 #### Remember to Link to Related Documentation (AKA: Don't Make Me Dig Through the Documentation)
 
