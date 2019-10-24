@@ -23,7 +23,7 @@
 - [API Documentation](#api-documentation)
   - [Source-Generated Documentation](#source-generated-documentation)
     - [Don't Restate the Function Name (AKA: Everyone Already Knows What a Getter Does)](#dont-restate-the-function-name-aka-everyone-already-knows-what-a-getter-does)
-    - [Be Detailed (AKA: Why didn't It Tell Me It'd Do That?)](#be-detailed-aka-why-didnt-it-tell-me-itd-do-that)
+    - [Be Detailed (AKA: Why Didn't It Tell Me It'd Do That?)](#be-detailed-aka-why-didnt-it-tell-me-itd-do-that)
     - [Use full sentences (AKA: This Isn't Really That Important, We Just Need a Style Standard)](#use-full-sentences-aka-this-isnt-really-that-important-we-just-need-a-style-standard)
     - [Remember to Link to Related Documentation (AKA: Don't Make Me Dig Through the Documentation)](#remember-to-link-to-related-documentation-aka-dont-make-me-dig-through-the-documentation)
     - [Always document params and return values (AKA: Inputs/Output Are Important)](#always-document-params-and-return-values-aka-inputsoutput-are-important)
@@ -235,7 +235,7 @@ In keeping with the above advice, you'll often run into a scenario where multipl
 
 But to the reader of the code, such a disambiguation is useless; it is merely a sign that one must now tediously inspect the source to attempt to find the *actual* difference in the roles of the two variables.  This takes time and effort - the minimization of which is the whole point of documentation.
 
-*Therefore*, when disambiguating the names of two similar variables, *describe their jobs in greater detail*.  Instead of `counter1` and `counter2`, disambiguate the variables with *what they are counting* (e.g. `InstanceCounter`).
+*Therefore*, when disambiguating the names of two similar variables, *describe their jobs in greater detail*.  Instead of `counter1` and `counter2`, disambiguate the variables with *what they are counting* (e.g. `instanceCounter`).
 
 #### Disambiguate Important Names Preemptively (AKA: `Parameterizer` Probably Describes Multiple Things)
 
@@ -249,7 +249,7 @@ It is important to note that sometimes, changing things as problems emerge is th
 
 #### Make Compromises When Things Become Unweildy (AKA: No One Wants to Read `AppletWidgetInstanceParameterizerFactoryFactory`)
 
-Descriptive naming does have limits.  Occasionally, in pursuit of providing everything with unique and semantically-meaningful names, monstrosities are created.  This is a common point of mockery for Java APIs (particularly [Spring](https://spring.io/>), which are liable to end up with class names so long and obtuse that they are [indistinguishable from machine-generated jibberish](http://java.metagno.me/).
+Descriptive naming does have limits.  Occasionally, in pursuit of providing everything with unique and semantically-meaningful names, monstrosities are created.  This is a common point of mockery for Java APIs (particularly [Spring](https://spring.io/>)), which are liable to end up with class names so long and obtuse that they are [indistinguishable from machine-generated jibberish](http://java.metagno.me/).
 
 *Therefore*, never be so specific with your naming that the sheer length of your names renders them unhelpful.
 
@@ -369,7 +369,7 @@ public Date getDate() {
 }
 ```
 
-#### Be Detailed (AKA: Why didn't It Tell Me It'd Do That?)
+#### Be Detailed (AKA: Why Didn't It Tell Me It'd Do That?)
 
 It's important to remember that the person reading your documentation *does not know what you know* (even if that person is you at some point in the future!).  The purpose of API documentation is to *summarize the important information about a piece of code*.  This doesn't just mean describing what the thing generally does - the name of the thing can and should do that already.  This means noting anything that might be surprising/unobvious about the functionality.
 
