@@ -421,7 +421,7 @@ For MRWolf projects, usage documentation will be contained in [Sphinx](http://ww
 
 The template for an MRWolf Sphinx Documentation Project can be found here: https://github.com/MRWolves/sphinx-template
 
-Usage documentation and standards for the above template can be found here: https://mrwolf-sphinx-playground.readthedocs.io
+Usage documentation and standards for the above template can be found here: https://sphinx-tutorial-temp.readthedocs.io/en/latest/
 
 Remember, again, that you should never write more documentation that you can feasibly maintain.  By nature, usage docs are the most involved and time-consuming type of documentation a project can have - small projects do not necessarily need usage docs, and should not have them if maintaining them would involve an unreasonable investment of effort.
 
