@@ -21,17 +21,18 @@
     - [Good Comments Are Summaries (AKA: The Map Is Smaller than the Territory)](#good-comments-are-summaries-aka-the-map-is-smaller-than-the-territory)
     - [Comments Can Be Visual Aids (AKA: Delimeters Are Good)](#comments-can-be-visual-aids-aka-delimeters-are-good)
 - [API Documentation](#api-documentation)
-  - [Source-Generated Documentation](#source-generated-documentation)
-    - [Don't Restate the Function Name (AKA: Everyone Already Knows What a Getter Does)](#dont-restate-the-function-name-aka-everyone-already-knows-what-a-getter-does)
-    - [Be Detailed (AKA: Why Didn't It Tell Me It'd Do That?)](#be-detailed-aka-why-didnt-it-tell-me-itd-do-that)
-    - [Capitalize and Use Periods (AKA: This Isn't Really That Important, We Just Need a Style Standard)](#capitalize-and-use-periods-aka-this-isnt-really-that-important-we-just-need-a-style-standard)
-    - [Remember to Link to Related Documentation (AKA: Don't Make Me Dig Through the Documentation)](#remember-to-link-to-related-documentation-aka-dont-make-me-dig-through-the-documentation)
-    - [Always document params and return values (AKA: Inputs/Output Are Important)](#always-document-params-and-return-values-aka-inputsoutput-are-important)
+  - [Use Source-Generated Documentation](#use-source-generated-documentation)
+  - [Don't Restate the Function Name (AKA: Everyone Already Knows What a Getter Does)](#dont-restate-the-function-name-aka-everyone-already-knows-what-a-getter-does)
+  - [Be Detailed (AKA: Why Didn't It Tell Me It'd Do That?)](#be-detailed-aka-why-didnt-it-tell-me-itd-do-that)
+  - [Capitalize and Use Periods (AKA: This Isn't Really That Important, We Just Need a Style Standard)](#capitalize-and-use-periods-aka-this-isnt-really-that-important-we-just-need-a-style-standard)
+  - [Remember to Link to Related Documentation (AKA: Don't Make Me Dig Through the Documentation)](#remember-to-link-to-related-documentation-aka-dont-make-me-dig-through-the-documentation)
+  - [Always document params and return values (AKA: Inputs/Output Are Important)](#always-document-params-and-return-values-aka-inputsoutput-are-important)
 - [Usage Documentation](#usage-documentation)
   - [Orient New Readers (AKA: Include a "Getting Started Page")](#orient-new-readers-aka-include-a-%22getting-started-page%22)
   - [Do Not Write an Extended Tutorial (AKA: No One Is Going to Read Your Documentation End-to-End)](#do-not-write-an-extended-tutorial-aka-no-one-is-going-to-read-your-documentation-end-to-end)
   - [Do Not Write Only (Or Even Mostly) Tutorials (AKA: Reference Material Is Important)](#do-not-write-only-or-even-mostly-tutorials-aka-reference-material-is-important)
   - [Use Multilayer Organization (AKA: Factor Related Things Together)](#use-multilayer-organization-aka-factor-related-things-together)
+  - [Link to API Documentation (AKA: Don't Make Me Navigate the Javadoc)](#link-to-api-documentation-aka-dont-make-me-navigate-the-javadoc)
 - [Seeing "Outside-In" vs. "Inside-Out" - The Pitfalls of Being The Developer](#seeing-%22outside-in%22-vs-%22inside-out%22---the-pitfalls-of-being-the-developer)
 - [A Closing Note: "Would I Hate These Developers?"](#a-closing-note-%22would-i-hate-these-developers%22)
 
@@ -333,7 +334,7 @@ API Documentation provides the intermediate stage between source documentation a
 
 API Documentation should generally be [source-generated](#source-generated-documentation) - i.e., auto-generated from comments located in the source.  This allows the API documentation to serve "double-duty" as in-code documentation, removing the need for duplication of summaries between comments and API docs.
 
-### Source-Generated Documentation
+### Use Source-Generated Documentation
 
 Good commenting practice, as mentioned earlier, involves summarizing code for the reader.  Often, code naturally presents us with convenient summarizeable "chunks" - in object-oriented programming, especially, methods and classes are extremely natural points for summarization.
 
@@ -341,9 +342,9 @@ Here, there exists an extremely fortuitious overlap in purposes - summarization 
 
 Using these tools not only removes the need to write separate API docs, but also (and more importantly) removes the need to *maintain* those docs.
 
-All projects should use `Javadoc <https://en.wikipedia.org/wiki/Javadoc>`__-style source-generated API docs.  Almost all languages now support docs of this sort (e.g. `doxygen <http://www.doxygen.nl/>` for C++/C#), and the consistency in style offered by the use of uniform tools is a tremendous asset.  For brevity, term "Javadoc" will be used to refer to all of these for the remainder of this document.
+*Therefore*, all projects should use `Javadoc <https://en.wikipedia.org/wiki/Javadoc>`__-style source-generated API docs.  Almost all languages now support docs of this sort (e.g. `doxygen <http://www.doxygen.nl/>` for C++/C#), and the consistency in style offered by the use of uniform tools is a tremendous asset.  For brevity, term "Javadoc" will be used to refer to all of these for the remainder of this document.
 
-#### Don't Restate the Function Name (AKA: Everyone Already Knows What a Getter Does)
+### Don't Restate the Function Name (AKA: Everyone Already Knows What a Getter Does)
 
 ```java
 /**
@@ -369,7 +370,7 @@ public Date getDate() {
 }
 ```
 
-#### Be Detailed (AKA: Why Didn't It Tell Me It'd Do That?)
+### Be Detailed (AKA: Why Didn't It Tell Me It'd Do That?)
 
 It's important to remember that the person reading your documentation *does not know what you know* (even if that person is you at some point in the future!).  The purpose of API documentation is to *summarize the important information about a piece of code*.  This doesn't just mean describing what the thing generally does - the name of the thing can and should do that already.  This means noting anything that might be surprising/unobvious about the functionality.
 
@@ -395,19 +396,19 @@ public double getHeading() {
 }
 ```
 
-#### Capitalize and Use Periods (AKA: This Isn't Really That Important, We Just Need a Style Standard)
+### Capitalize and Use Periods (AKA: This Isn't Really That Important, We Just Need a Style Standard)
 
 Nothing's uglier than an API doc with inconsistent style.  While there are multiple standards to choose from, and all of them are more-or-less equally fine, the easiest one to remember by far is, simply, "all text in the javadoc should be be formatted as complete sentences."
 
 *Therefore*, all text in the javadoc should be formatted as complete sentences (i.e. be capitalized and use periods).  This can seem a bit odd for param and return value descriptions, but it's simple and easy to remember.
 
-#### Remember to Link to Related Documentation (AKA: Don't Make Me Dig Through the Documentation)
+### Remember to Link to Related Documentation (AKA: Don't Make Me Dig Through the Documentation)
 
 When a javadoc summary mentions another class or method and *doesn't* link to that class or method, the reader is forced to waste time looking for it.  Almost all javadoc-style API docs support linking to other generated docs.
 
 *Therefore*, always link to the documentation for mentioned code.
 
-#### Always document params and return values (AKA: Inputs/Output Are Important)
+### Always document params and return values (AKA: Inputs/Output Are Important)
 
 Source-generated documentation systems basically always include features for individually documenting the parameters and return values of methods.  Most editors support auto-generation of the required tags (usually `@param` and `@return`).  If you *don't* set these up, the parameters will still have "descriptions" in the source-generated docs, but they will be empty.
 
@@ -460,6 +461,12 @@ Tutorials are great introductory material, but they rapidly wear thin as the use
 Just like in code, usage docs are much easier to navigate if conceptually-related pages are factored together.  If your docs are short, this can be done simply by ordering the pages in a reasonable manner - for more substantial projects, however, this likely will not suffice, and the best solution is often to use a nested structure (just like how this article has sections and subsections).
 
 *Therefore*, pay attention to your main TOC.  If it's overlong, condense sections of related pages into their own subsections.
+
+### Link to API Documentation (AKA: Don't Make Me Navigate the Javadoc)
+
+Remember that users encounter documentation from the "outside-in" rather than from the "inside-out."  When writing usage documentation, the developer often has the API docs available and open either on their own or as comments in the source), and is able to use them to inform the writing of the usage docs.  By default, however, the reader does *not.*
+
+*Therefore*, make frequent links to API documentation from your usage documentation.  Whenever a new class is introduced, it should be accompanied by a link to the API documentation page for that class.  Subsequent mentions of that class need not necessarily include links, though it can be helpful to do so - use your best judgment as to whether it is necessary/helpful.
 
 ## Seeing "Outside-In" vs. "Inside-Out" - The Pitfalls of Being The Developer
 
