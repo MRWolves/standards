@@ -5,7 +5,7 @@
   - [Code Style](#code-style)
   - [Code Structure](#code-structure)
     - [Separation of Responsibilities (AKA: Each Piece of Code Should Have a Job)](#separation-of-responsibilities-aka-each-piece-of-code-should-have-a-job)
-    - [Avoid Globals (AKA Pass Information Locally)](#avoid-globals-aka-pass-information-locally)
+    - [Avoid Globals (AKA: Pass Information Locally)](#avoid-globals-aka-pass-information-locally)
     - [Do Not Repeat Code Unnecessarily (AKA: Abstraction Is Good)](#do-not-repeat-code-unnecessarily-aka-abstraction-is-good)
     - [Do Not Overabstract (AKA: Abstraction Is Bad)](#do-not-overabstract-aka-abstraction-is-bad)
     - [Avoid Deeply-Nested Control Statements (AKA: The Actual Reason for Column Limits)](#avoid-deeply-nested-control-statements-aka-the-actual-reason-for-column-limits)
@@ -141,7 +141,7 @@ This is often the case with "proof-of-concept" code, which grows rapidly and hap
 
 *Therefore*, ensure that your code separates into pieces, *and* that each piece has a clear functionality that can be understood without simultaneously understanding the rest of the code in full detail.  In object-oriented programming, this is often best-accomplished by making wise choices as to one's class structure - but the concept is applicable in all contexts.
 
-#### Avoid Globals (AKA Pass Information Locally)
+#### Avoid Globals (AKA: Pass Information Locally)
 
 Global variables are almost always a bad idea.  Since a global variable can be modified or read from anywhere in the code, they directly contradict the notion of factoring the code into chunks that can be understood in isolation.  Code that makes heavy use of globals tends to be extremely difficult to read, and even harder to modify/debug.
 
