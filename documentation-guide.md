@@ -420,9 +420,9 @@ The final "layer" of documentation to be written for a project is *usage documen
 
 For MRWolf projects, usage documentation will be contained in [Sphinx](http://www.sphinx-doc.org/en/master/) projects.  This provides a standard format and look for our documentation, and also supports a large number of standard and community-written features that make writing and maintaining our documentation easier.
 
-The template for an MRWolf Sphinx Documentation Project can be found here: https://github.com/MRWolves/sphinx-template
+A MRWolf Sphinx Template, along with a how-to guide, can be found here: 
 
-Usage documentation and standards for the above template can be found here: https://sphinx-tutorial-temp.readthedocs.io/en/latest/
+http://MRWolfSphinxMetadocs.azurewebsites.net
 
 Remember, again, that you should never write more documentation that you can feasibly maintain.  By nature, usage docs are the most involved and time-consuming type of documentation a project can have - small projects do not necessarily need usage docs, and should not have them if maintaining them would involve an unreasonable investment of effort.
 
