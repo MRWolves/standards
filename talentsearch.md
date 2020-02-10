@@ -70,7 +70,7 @@ The *profile page* will serve as a typical user's "homepage."  The profile page 
 
 * A user portrait
 * A brief user bio
-* A list of the user's skills (for more information, see [here](#Skills System)).
+* A list of the user's skills (for more information, see [here](#skills-system)).
 * A list of the user's project interests.
 * A list of the user's current projects.
 * The user's current time availability.
@@ -80,7 +80,7 @@ The *profile page* will serve as a typical user's "homepage."  The profile page 
 The *project page* describes a given project, and displays the available (and filled) roles for that project.  The project page will contain:
 
 * A project summary describing the project's purpose and context within Munich Re.
-* A skill-searchable list of project roles (for more information, see [here](#Roles System)).
+* A skill-searchable list of project roles (for more information, see [here](#roles-system)).
 * A list of assets currently working on the project.
 * Contact information for the project manager.
 
