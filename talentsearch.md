@@ -1,5 +1,27 @@
 # Munich Reinsurance TalentSearch (name pending)
 
+<!-- TOC -->
+
+- [Munich Reinsurance TalentSearch (name pending)](#munich-reinsurance-talentsearch-name-pending)
+  - [Project Outline](#project-outline)
+    - [Core Functionalities](#core-functionalities)
+    - [Non-Functionalities](#non-functionalities)
+    - [User Roles](#user-roles)
+      - [Role 1: Asset](#role-1-asset)
+      - [Role 2: Project Manager](#role-2-project-manager)
+      - [Role 3: Administrator](#role-3-administrator)
+    - [Application Structure](#application-structure)
+      - [Pages](#pages)
+        - [Profile Page](#profile-page)
+        - [Project Page](#project-page)
+        - [Role Search Page](#role-search-page)
+        - [Asset Search Page](#asset-search-page)
+    - [Skills System](#skills-system)
+    - [Roles System](#roles-system)
+    - [Time Management System](#time-management-system)
+
+<!-- /TOC -->
+
 This is a conceptual design document for Munich Re TalentSearch.  TalentSearch is a proposed resource-allocation application for internal use within Munich Reinsurance and its subsidiaries.  TalentSearch would provide features to document user skillsets and allow the matching of those skillsets to the needs of current projects (both technical and nontechnical).  TalentSearch would also provide basic time-management functionality to allow users to indicate their capacity for additional work.
 
 ## Project Outline
@@ -18,7 +40,7 @@ TalentSearch will provide the following core functionalities:
 
 In order to prevent scope-creep, it is important to note what TalentSearch is *not* intended to do.  TalentSearch will *not*:
 
-* Provide detailed project management and organization functionality (e.g. todo lists, messaging, announcements, scheduling, sprint management, etc).  This should be done using other software - TalentSearch exists to facilitate the *matching of users to projects*; it is not intended to facilitate the *other logistics of those projects*.
+* Provide detailed project management and organization functionality (e.g. todo lists, messaging, announcements, scheduling, sprint management, etc).  This should be done using other software - TalentSearch exists to facilitate the *matching of users to projects*; it is not intended to manage the *internal logistics of those projects*.
 * Provide user-to-user communication, except through role requests and assignments.  The application will expose contact information (e.g. company email addresses and skype) - detailed communication should be carried out through those channels, and will not be done through the application.
 * Publicly document project status (e.g. "project blog"-type functionality or publicly-visible "popularity" or "interest" rankings).  TalentSearch is not intended to provide a way to "keep tabs" on the goings-on of various projects - it is *strictly* intended for asset management.
 
