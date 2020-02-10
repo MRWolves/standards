@@ -120,7 +120,7 @@ The *asset search page* will allow project managers and administrators to search
 
 The core of TalentSearch's functionality is the *skills system*, which forms the basis of the matching of assets to roles.
 
-The skills system will be based primarily on user selections from pre-populated lists of available skills.  The choice of pre-populated (rather than freeform) will allow for much more-powerful and seamless search and filtering functionality, which is *crucial* for the application to satisfy its core design requirement of matching assets to availale roles.
+The skills system will be based primarily on user selections from pre-populated lists of available skills.  The choice of pre-populated (rather than freeform) will allow for much more-powerful and seamless search and filtering functionality, which is *crucial* for the application to satisfy its core design requirement of matching assets to available roles.
 
 Skills will be separated into "hard skills" and "soft skills," per the usual definition of these terms.  "Hard skills" may be further separated by problem-space (e.g. "programming," "underwriting," "actuarial skills," etc).
 
