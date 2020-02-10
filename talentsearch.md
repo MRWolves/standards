@@ -70,7 +70,7 @@ The *profile page* will serve as a typical user's "homepage."  The profile page 
 
 * A user portrait
 * A brief user bio
-* A list of the user's skills (for more information, see [here](# Skills System)).
+* A list of the user's skills (for more information, see [here](#Skills System)).
 * A list of the user's project interests.
 * A list of the user's current projects.
 * The user's current time availability.
@@ -80,7 +80,7 @@ The *profile page* will serve as a typical user's "homepage."  The profile page 
 The *project page* describes a given project, and displays the available (and filled) roles for that project.  The project page will contain:
 
 * A project summary describing the project's purpose and context within Munich Re.
-* A skill-searchable list of project roles (for more information, see [here](# Roles System)).
+* A skill-searchable list of project roles (for more information, see [here](#Roles System)).
 * A list of assets currently working on the project.
 * Contact information for the project manager.
 
@@ -122,7 +122,7 @@ Roles will typically be displayed as "panels" in a vertically-scrollable list.  
 * A brief description of the role
 * The project name
 * The skills required by the role.
-* The time commitment required by the role (for more information, see [here](# Time Management System)).
+* The time commitment required by the role (for more information, see [here](#Time Management System)).
 
 Role panels will be clickable, and on click will expand to provide more-detailed information about the role.  Clickable expansion is highly-compatible with display in a vertically-scrollable list.  Display of skills within a role panel will be consistent with the aforementioned rules for skill display.
 
