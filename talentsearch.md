@@ -122,7 +122,7 @@ Roles will typically be displayed as "panels" in a vertically-scrollable list.  
 * A brief description of the role
 * The project name
 * The skills required by the role.
-* The time commitment required by the role (for more information, see [here](#Time Management System)).
+* The time commitment required by the role (for more information, see [here](#time-management-system)).
 
 Role panels will be clickable, and on click will expand to provide more-detailed information about the role.  Clickable expansion is highly-compatible with display in a vertically-scrollable list.  Display of skills within a role panel will be consistent with the aforementioned rules for skill display.
 
