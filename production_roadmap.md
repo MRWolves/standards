@@ -7,6 +7,9 @@
 * Full editability on all pages
   * Conditional editability based on permissions
   * Clean, unobtrusive edit interface (no large buttons)
+* Error handling
+  * Code-wise consistency (look up how to do this in react) - errors should generally "fall through" to a component that catches them in a managed way
+  * UI-wise consistency (error dialogues should have a consistent look and not be horrendously scary to the user)
 * Code cleanliness and documentation
   * TSDocs on important functions
   * Reduce repetition, genericize components when possible
@@ -16,7 +19,7 @@
     * Rename "model" to "data"
     * Reduce number of functions in each module
 * Email integration (bring up outlook window)
-* Styling, formatting, etc.
+* Styling, formatting, etc
 
 ### Important
 
