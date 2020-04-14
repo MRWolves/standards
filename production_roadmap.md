@@ -26,6 +26,8 @@
 * Saved user preferences
   * Saved searches
   * Candidate lists
+* PM Dashboard
+  * Show vacant roles, easy access to candidate lists
 * Search from role card
   * Clickable search button on role card
   * Searches for skills, filters by profile skills and location
